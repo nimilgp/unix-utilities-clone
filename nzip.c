@@ -45,6 +45,11 @@ main(int argc, char* argv[])
 {
 	FILE* fptr;
 	int count = 1;
+	
+	if(argc<2)
+	{
+		printf("[ussage] :nzip {file} ...");
+	}
 	while(count<argc){
 		fptr = fopen(argv[count],"r");
 		fileAccessCheck(fptr,argv[count]);
