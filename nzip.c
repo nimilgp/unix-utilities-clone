@@ -23,7 +23,6 @@ compressFile(FILE* fp)
 		if(count == 0)
 		{
 			temp_char = cur_char;
-			//printf("%c",temp_char);
 		}
 		if(temp_char == cur_char)
 		{
@@ -53,6 +52,7 @@ main(int argc, char* argv[])
 		fclose(fptr);
 		count++;
 	}
+	printf("\n");
 	exit(0);
 	return 0;
 }
