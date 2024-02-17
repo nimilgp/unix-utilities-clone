@@ -5,7 +5,7 @@ int
 fileAccessCheck(FILE* fp,char* fileName)
 {
 	if(fp == NULL){
-		printf("\nncat: could't get the file:%s\n\n",fileName);
+		printf("\nnzip: could't get the file:%s\n\n",fileName);
 		exit(1);
 	}
 	return 0;
