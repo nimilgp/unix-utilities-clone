@@ -24,10 +24,13 @@ int
 main(int argc, char* argv[])
 {
 	FILE* fptr;
-	fptr = fopen(argv[1],"r");
-	
-	fileAccessCheck(fptr);
-
-	printFile(fptr);
+	int count = 1;
+	while(count<argc){
+		fptr = fopen(argv[count],"r");
+		fileAccessCheck(fptr);
+		printFile(fptr);
+		fclose(fptr);
+		count++;
+	}
 	return 0;
 }
