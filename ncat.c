@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 int
-fileAccessCheck(FILE* fp)
+fileAccessCheck(FILE* fp,char* fileName)
 {
 	if(fp == NULL){
-		printf("\ncould't get the file\n\n");
+		printf("\nncat: could't get the file:%s\n\n",fileName);
 		exit(1);
 	}
 	return 0;
@@ -14,9 +14,11 @@ fileAccessCheck(FILE* fp)
 int
 printFile(FILE* fp)
 {
-	char buffer[1000];
-	fgets(buffer,1000,fp);
-	printf("%s",buffer);
+	char buffer[100];
+	while(fgets(buffer,100,fp)!=NULL)
+	{
+		printf("%s",buffer);
+	}
 	return 0;
 }
 
@@ -27,10 +29,11 @@ main(int argc, char* argv[])
 	int count = 1;
 	while(count<argc){
 		fptr = fopen(argv[count],"r");
-		fileAccessCheck(fptr);
+		fileAccessCheck(fptr,argv[count]);
 		printFile(fptr);
 		fclose(fptr);
 		count++;
 	}
+	exit(0);
 	return 0;
 }
