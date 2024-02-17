@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int
 fileAccessCheck(FILE* fp,char* fileName)
@@ -20,7 +21,10 @@ scanFile(FILE* fp,char* matchStr)
 	
 	while(getline(&buffer,&buff_size,fp) != -1)
 	{
-		printf("%s",buffer);
+		if(strstr(buffer,matchStr)!=NULL)
+		{
+			printf("%s",buffer);
+		}
 	}
 	return 0;
 }
@@ -29,11 +33,20 @@ int
 main(int argc, char* argv[])
 {
 	FILE* fptr;
+	int count = 2;
 	
-	fptr = fopen(argv[2],"r");
-	fileAccessCheck(fptr,argv[2]);
-	scanFile(fptr,argv[1]);
-	fclose(fptr);
+	if(argc<2)
+	{
+		printf("[ussage]: ngrep {searchterm} {filename}\n"); 
+	}
 
+	while(count<argc)
+	{
+		fptr = fopen(argv[count],"r");
+		fileAccessCheck(fptr,argv[count]);
+		scanFile(fptr,argv[1]);
+		fclose(fptr);
+		count++;
+	}
 	return 0;
 }
